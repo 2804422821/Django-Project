@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class='container-fluid'>
+    {% include "head.html" %}
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="card border-info mb-3">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        控制面板
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <a class="list-group-item list-group-item-action" href="http://127.0.0.1:1000/">员工信息显示</a>
+                        <a class="list-group-item list-group-item-action" href="http://127.0.0.1:1000/add">添加员工信息</a>
+                        <a class="list-group-item list-group-item-action" href="http://127.0.0.1:1000/">返回主界面</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="card card-primary">
+                <div class="card-header">
+                    {% block headmessage %}{% endblock %}
+                </div>
+                <div class="card-body">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

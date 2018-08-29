@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<script src="/static/jquery-3.3.1.js">
+
+</script>
+
+{% block headmessage %}
+    <div>
+        <h1 class="card-title">员工信息显示</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <div>
+            <h3>员工信息列表</h3>
+        </div>
+        <div>
+            <form class="form-inline" method="post" action="/search">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="selectList">查找类型</label>
+                    <select class="form-control" name="select" id="selectList">
+                        <option>所有员工</option>
+                        <option>员工工号</option>
+                        <option>员工姓名</option>
+                        <option>部门</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="inputValue" placeholder="Search">
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-success" type="submit" name="search" value="查询">
+                </div>
+            </form>
+         </div>
+        <div class="table-responsive">
+              <table class="table table-bordered">
+                  <thead class="thead-dark">
+                  <tr>
+                     <th>id</th>
+                     <th>员工姓名</th>
+                     <th>员工工号</th>
+                     <th>出生日期</th>
+                     <th>性别</th>
+                     <th>部门</th>
+                     <th>职位</th>
+                     <th>电话</th>
+                     <th>操作</th>
+                  </tr>
+                  </thead>
+                 {% for staff in staffList %}
+                     <tr nid="{{ staff.id }}">
+                         <td>{{ staff.id }}</td>
+                         <td>{{ staff.name }}</td>
+                         <td>{{ staff.account }}</td>
+                         <td>{{ staff.birthday|date:"Y-m-d"}}</td>
+                         <td>{{ staff.gender }}</td>
+                         <td>{{ staff.department }}</td>
+                         <td>{{ staff.position }}</td>
+                         <td>{{ staff.mobile }}</td>
+                         <td><a href="http://127.0.0.1:1000/delete?nid={{ staff.id}}"><button name="delete" class="btn btn-danger">删除</button></a>
+                             <a href="http://127.0.0.1:1000/modify?nid={{ staff.id}}"><button name="modify" class="btn btn-primary" >修改</button></a>
+                         </td>
+                     </tr>
+                 {% endfor %}
+             </table>
+        </div>
+        <div class="paginator">
+            <span class="step-links">
+            {% if staffList.has_previous %}
+                <a href="http://127.0.0.1:1000/?page={{ staffList.previous_page_number }}">前一页</a>
+            {% endif %}
+            <span class="current">
+                Page{{ staffList.number }} of {{ staffList.paginator.num_pages }}.
+            </span>
+            {% if staffList.has_next %}
+                <a href="http://127.0.0.1:1000/?page={{ staffList.next_page_number }}">下一页</a>
+            {% endif %}
+            </span>
+        </div>
+    </div>
+{% endblock %}
+}

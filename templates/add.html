@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block headmessage %}
+ <div>
+        <h1>员工信息添加</h1>
+ </div>
+{% endblock %}
+
+{% block content %}
+    <hr>
+    <form method="post" class="form-horizontal" name="addForm" action="/add">
+        {% csrf_token %}
+         <input type="text" name="idInput" value="{{ item.id }}" hidden>
+         <div class="form-group row">
+             <label for="name" class="col-sm-1 col-form-label">员工姓名</label>
+             <input type="text" class="col-sm-8 form-control" name="nameInput" id="name" placeholder="Name"><br>
+         </div>
+        <div class="form-group row">
+            <label for="account" class="col-sm-1 col-form-label">员工工号</label>
+            <input type="text" class="col-sm-8 form-control" name="accountInput" id="account" placeholder="Account"><br>
+        </div>
+        <div class="form-group row">
+            <label for="birthday" class="col-sm-1 col-form-label">出生日期</label>
+            <input type="text" class="col-sm-8 form-control" name="birthdayInput" id="birthday" placeholder="Birthday"><br>
+        </div>
+        <div class="form-group row">
+            <label for="gender" class="col-sm-1 col-form-label">性别</label>
+            <input type="text" class="col-sm-8 form-control" name="genderInput" id="gender" placeholder="Gender"><br>
+        </div>
+        <div class="form-group row">
+            <label for="department" class="col-sm-1 col-form-label">部门</label>
+            <input type="text" class="col-sm-8 form-control" name="departmentInput" id="department" placeholder="Department"><br>
+        </div>
+        <div class="form-group row">
+            <label for="position" class="col-sm-1 col-form-label">职位</label>
+            <input type="text" class="col-sm-8 form-control" name="positionInput" id="position" placeholder="Position"><br>
+        </div>
+        <div class="form-group row">
+            <label for="mobile" class="col-sm-1 col-form-label">电话</label>
+            <input type="text" class="col-sm-8 form-control" name="mobileInput" id="mobile" placeholder="Mobile"><br>
+        </div>
+        <div class="form-group row">
+            <input class="btn btn-primary" type="submit" name="confirm">
+        </div>
+    </form>
+{% endblock %}

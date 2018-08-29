@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block headmessage %}
+ <div>
+        <h1>员工信息修改</h1>
+ </div>
+{% endblock %}
+
+{% block content %}
+    <div>
+        <form method="post" class="form-horizontal" name="modifyForm" action="/modify">
+        {% csrf_token %}
+        {% for item in staff %}
+            <input type="text" name="idOutput" value="{{ item.id }}" hidden>
+            <div class="form-group row">
+                <label for="name" class="col-sm-1 col-form-label">员工姓名</label>
+                <input type="text" class="col-sm-8 form-control" name="nameOutput" id="name" value="{{ item.name}}"><br>
+            </div>
+            <div class="form-group row">
+                <label for="account" class="col-sm-1 col-form-label">员工工号</label>
+                <input type="text" class="col-sm-8 form-control" name="accountOutput" id="account" value="{{ item.account}}"><br>
+            </div>
+            <div class="form-group row">
+                <label for="birthday" class="col-sm-1 col-form-label">出生日期</label>
+                <input type="text" class="col-sm-8 form-control" name="birthdayOutput" id="birthday" value="{{ item.birthday|date:"Y-m-d"}}"><br>
+            </div>
+            <div class="form-group row">
+                <label for="gender" class="col-sm-1 col-form-label">性别</label>
+                <input type="text" class="col-sm-8 form-control" name="genderOutput" id="gender" value="{{ item.gender}}"><br>
+            </div>
+            <div class="form-group row">
+                <label for="department" class="col-sm-1 col-form-label">部门</label>
+                <input type="text" class="col-sm-8 form-control" name="departmentOutput" id="department" value="{{ item.department}}"><br>
+            </div>
+            <div class="form-group row">
+                <label for="position" class="col-sm-1 col-form-label">职位</label>
+                <input type="text" class="col-sm-8 form-control" name="positionOutput" id="position" value="{{ item.position}}"><br>
+            </div>
+            <div class="form-group row">
+                <label for="mobile" class="col-sm-1 col-form-label">电话</label>
+                <input type="text" class="col-sm-8 form-control" name="mobileOutput" id="mobile" value="{{ item.mobile}}"><br>
+            </div>
+            <div class="form-group-row">
+                <input class="btn btn-primary" type="submit" name="confirm">
+            </div>
+        {% endfor %}
+    </form>
+    </div>
+{% endblock %}
